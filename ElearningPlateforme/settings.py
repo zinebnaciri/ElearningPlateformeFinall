@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'utilisateurs',
     'programmes',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
