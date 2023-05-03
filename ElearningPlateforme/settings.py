@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'utilisateurs',
     'programmes',
     'crispy_forms',
+    'crispy_bootstrap4',
+    
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 MIDDLEWARE = [
