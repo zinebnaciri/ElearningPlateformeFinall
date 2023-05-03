@@ -4,8 +4,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-def acceuil(request):
-    return render(request, 'utilisateurs/index.html')
 
 
 def register(request):
@@ -43,7 +41,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('home/')
 
             else:
                 return HttpResponse("Utilisateur desactivé ")
@@ -52,6 +50,11 @@ def user_login(request):
             return HttpResponse("Username ou Password incorrecte ")
     else:
         return render(request, 'utilisateurs/login.html')
+    
+@login_required
+def acceuil(request):
+    return render(request, 'base.html')
+
 @login_required
 def user_logout(request):
     logout(request)
