@@ -45,16 +45,13 @@
                   {% if user.is_authenticated %}
                   <li class="nav-item">
                      <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" title="Log out">Se deconnecter</a>
+                        data-bs-placement="bottom" href="{% url 'logout' %}" title="Log out">Se deconnecter</a>
                   </li>
                   {% endif %}
-                  <li class="nav-item">
-                     <a class="nav-link active fw-bold" href="{% block profile %}{% endblock profile %}"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                        title="Check your profile">{% block user %}{% endblock  %}</a>
-                  </li>
+                  
                </ul>
                <form class="d-flex"  method="GET">
+                  
                   <input id="searchIn" class="form-control me-2 searchbar" type="search" placeholder="Search courses" aria-label="Search"
                      name="q">
                   <button id="searchBtn" class="btn btn-outline-light" type="submit">Search</button>
@@ -62,6 +59,10 @@
             </div>
          </div>
       </nav>
+     <h2 >
+         <a class="nav-link active fw-bold" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            title="Check your profile">Welcome {{request.user.username}} </a>
+     </h2>
       <!-- Navbar Ends -->
       {% block  content %}
       {% endblock  %}
