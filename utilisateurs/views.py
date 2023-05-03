@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 def acceuil(request):
     return render(request, 'utilisateurs/login.html')
-
+def dashboard(request):
+return render(request, 'base.html')
 
 def register(request):
     registered = False
