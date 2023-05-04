@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\badra\OneDrive\Desktop\python\ElearningPlateformeFinall\venv"
+VIRTUAL_ENV="C:\Users\badra\PycharmProjects\ElearningPlateformeFinall\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
