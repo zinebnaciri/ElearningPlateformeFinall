@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for matiere in niveau.matiere.all  %}
+
+        <a href="{% url 'programmes:lessonlist' slug=matiere.slug  niveau=niveau.slug %}"> {{ matiere.nom }} </a><br>
+    
+    {% endfor %}
+{% endblock %}

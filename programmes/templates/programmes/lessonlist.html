@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for lesson in matieres.lesson.all  %}
+        
+        <a href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=matieres.slug niveau=matieres.niveau.slug %}">Chapitre-{{ lesson.position }} {{ lesson.nom }} </a><br>
+
+    
+    {% endfor %}
+<a href="{% url 'programmes:lessoncreate' niveau=matieres.niveau.slug slug=matieres.slug %}"> Ajouter Une leçon </a>
+{% endblock %}

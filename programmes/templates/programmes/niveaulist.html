@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for niveau  in niveaux  %}
+
+<a href={% url 'programmes:matierelist' slug=niveau.slug %}> {{ niveau.nom }}</a><br>
+
+{% endfor %}
+
+
+{% endblock %}
