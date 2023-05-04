@@ -43,7 +43,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('home/')
+                return HttpResponseRedirect('acceuil/')
 
             else:
                 return HttpResponse("Utilisateur desactivé ")
@@ -56,7 +56,7 @@ def user_login(request):
 
 @login_required
 def acceuil(request):
-    return render(request, 'base.html')
+    return render(request, 'acceuil/')
 
 
 @login_required
