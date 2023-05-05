@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }}{% endblock title %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            {% if  request.user.is_superuser%}
+            <p class="title-info"><i class="fas fa-user"></i> Login Info</p>
+            <div class="dashboard-description">
+                <p><strong> Etudiant : </strong>{{ user.get_full_name }}</p>
+                <p><strong>Last login: </strong>{{ user.last_login|date }}</p>
+                <p><strong>Full Name: </strong>{{ user.get_full_name|title }}</p>
+                <p><strong>Role: </strong>
+                    {{ user.get_user_role }}
+                </p>
+            </div>
+            {% endif %}
+            <p class="title-info"><i class="fas fa-user"></i>Personal Info</p>
+            <div class="dashboard-description">
+                <p><strong>First Name:</strong> {{ user.first_name|title }}</p>
+                <p><strong>Last Name:</strong> {{ user.last_name|title }}</p>
+                <p><strong>ID No.:</strong> {{ user.username }}</p>
+            </div>
+            {% if user.is_student %}
+            <p class="title-info"><i class="fas fa-graduation-cap"></i>Applicant Info</p>
+            <div class="dashboard-description">
+                <p><strong>School: </strong>{{ student.get_student_school }}</p>
+                <p><strong>Level: </strong>{{ student.level }}</p>
+            </div>
+            {% endif %}
+                
+            <p class="title-info"><i class="fas fa-phone-square-alt"></i>Contact Info</p>
+            <div class="dashboard-description">
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Tel No.:</strong> {{ user.phone }}</p>
+                <p><strong>Address/city:</strong> {{ user.address }}</p>
+            </div>
+            
+            <p class="title-info"><i class="fa fa-calendar-day"></i>Important Dates</p>
+            <div class="dashboard-description">
+                <p><strong>Last login:</strong> {{ user.last_login }}</p>
+                <p><strong>Academic Year:</strong> {{ current_semester }} Semester {{ current_session }}</p>
+                <p><strong>Registered Date:</strong> {{ user.date_joined|date }}</p>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}

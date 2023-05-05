@@ -1,11 +1,10 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
 from django.urls import reverse
-
+from django.conf import settings
 # Create your models here.
-
+User = settings.AUTH_USER_MODEL
 class Niveaux(models.Model):
     nom = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True)
