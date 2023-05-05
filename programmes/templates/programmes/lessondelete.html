@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Etez vous sure de vouloir supprimer?</h1>
-   <form method="POST">
-       {% csrf_token %}
-       <input type="submit" value="supprimer definitivement">
-       <a href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}">annuler</a>
-   </form>
-
-
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Êtes-vous sûr(e) de vouloir supprimer cette leçon?</h1>
+    <div class="d-flex justify-content-center">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center">
+                <input class="btn btn-danger mr-3" type="submit" value="Supprimer définitivement">
+                <a class="btn btn-primary" href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

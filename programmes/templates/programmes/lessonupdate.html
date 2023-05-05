@@ -1,11 +1,22 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
-   <form method="POST">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <input type="submit" value="confirmer la modification">
-       <a href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}">Annuler</a>
-   </form>
-
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">{{ form.title }}</div>
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="Confirmer la modification" class="btn btn-primary">
+              <a href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}" class="btn btn-secondary">Annuler</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for matiere in niveau.matiere.all  %}
-
-        <a href="{% url 'programmes:lessonlist' slug=matiere.slug  niveau=niveau.slug %}"> {{ matiere.nom }} </a><br>
-    
+<div class="container">
+  <h4 class="my-4">Listes des cours du niveau : {{ niveau.nom }}</h4>
+  <div class="row">
+    {% for matiere in niveau.matiere.all %}
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <img src="{{ matiere.image.url }}" class="card-img-top" alt="{{ matiere.nom }} Image" style="height: 200px; width: 100%; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ matiere.nom }}</h5>
+            <p class="card-text">{{ matiere.description }}</p>
+            <a href="{% url 'programmes:lessonlist' slug=matiere.slug niveau=niveau.slug %}" class="btn btn-primary">Voir les leçons</a>
+          </div>
+        </div>
+      </div>
     {% endfor %}
+  </div>
+</div>
 {% endblock %}
+

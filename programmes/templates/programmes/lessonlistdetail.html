@@ -1,11 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   
+    <div class="container">
+        <h3 class="mb-4">La leçon intitulée {{ lesson.nom }} a été créée par Prof: {{ lesson.creer_par }}</h3>
+        <a href="{% url 'programmes:lessonupdate' niveau=lesson.niveau.slug matiere=lesson.matiere.slug slug=lesson.slug %}" class="btn btn-primary mr-2">Modifier la leçon</a>
+        <a href="{% url 'programmes:lessondelete' niveau=lesson.niveau.slug matiere=lesson.matiere.slug slug=lesson.slug %}" class="btn btn-danger">Supprimer la leçon</a> <br><br>
+        {% if lesson.video %}
+            <div class="embed-responsive embed-responsive-16by9 mb-4">
+                <iframe class="embed-responsive-item" src="{{ lesson.video }}" allowfullscreen></iframe>
+            </div>
+        {% endif %}
+        <div class="row">
+            {% if lesson.pdf %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Informations supplementaires en PDF</h5>
+                            <a href="{{ lesson.pdf }}" class="btn btn-primary">Télécharger le PDF</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if lesson.fpe %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">La leçon en PPT</h5>
+                            <a href="{{ lesson.fpe }}" class="btn btn-primary">Télécharger le PPT</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
         
-    <h3>La leçon intitulée {{ lesson.nom }} a été créee par Prof: {{ lesson.creer_par }} </h3><br>
-    <a href="{% url 'programmes:lessonupdate' niveau=lesson.niveau.slug matiere=lesson.matiere.slug slug=lesson.slug %}"> modifier la lesson</a> <br>
-    <a href="{% url 'programmes:lessondelete' niveau=lesson.niveau.slug matiere=lesson.matiere.slug slug=lesson.slug %}"> supprimer la lesson</a>
-
-    
+    </div>
 {% endblock %}

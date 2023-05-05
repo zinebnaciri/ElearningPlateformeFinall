@@ -50,7 +50,7 @@ class LessonCreateView(CreateView):
 
 
 class LessonUpdateView(UpdateView):
-    fields = ('nom', 'position', 'pdf', 'fpe')
+    fields = ('nom', 'position')
     context_object_name = 'lesson'
     model = Lesson
     template_name = 'programmes/lessonupdate.html'

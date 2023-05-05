@@ -1,11 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for lesson in matieres.lesson.all  %}
-        
-        <a href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=matieres.slug niveau=matieres.niveau.slug %}">Chapitre-{{ lesson.position }} {{ lesson.nom }} </a><br>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>{{ matieres.nom }} {{ matieres.niveau.nom }}</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <button class="btn btn-success" type="button" id="button-add-lesson">
+                        Ajouter Une leçon
+                    </button>
+                    <div class="input-group-append" style="margin-left: 10px;">
+                        <input type="text" class="form-control" placeholder="Rechercher par nom" aria-label="Rechercher par nom" id="search-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            {% for lesson in matieres.lesson.all  %}
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Chapitre-{{ lesson.position }} {{ lesson.nom }}</h5>
+                            <a href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=matieres.slug niveau=matieres.niveau.slug %}" class="btn btn-primary">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#button-add-lesson').click(function() {
+                window.location.href = '{% url 'programmes:lessoncreate' niveau=matieres.niveau.slug slug=matieres.slug %}';
+            });
 
-    
-    {% endfor %}
-<a href="{% url 'programmes:lessoncreate' niveau=matieres.niveau.slug slug=matieres.slug %}"> Ajouter Une leçon </a>
+            $('#search-input').on('input', function() {
+                var searchText = $(this).val().toLowerCase();
+                $('.card-title').each(function() {
+                    var currentText = $(this).text().toLowerCase();
+                    if (currentText.indexOf(searchText) != -1) {
+                        $(this).parents('.card').show();
+                    } else {
+                        $(this).parents('.card').hide();
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
