@@ -1,16 +1,13 @@
- python3 manage.py startapp
 
 python3 -m venv venv
 
 source venv/bin/activate  or venv\Scripts\activate
 deactivate
+
 important apres chaque ajout d'un module  --> pip3 freeze > requirements.txt
 pip3 install -r requirements.txt
 
-pip3 install django-crispy-forms
-pip3 install psycopg2
-
-django-admin startproject comptes 
+django-admin startapp  
 
 
 Anas : {
