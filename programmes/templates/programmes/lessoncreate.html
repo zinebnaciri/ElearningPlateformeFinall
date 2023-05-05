@@ -5,14 +5,14 @@
 <div class="container">
     <div class="row justify-content-center">
        <div class="col-md-6">
-   <form method="POST" class="bg-light p-4">
-    <h4 class="my-4">Formulaire de creation d'une lesson</h4>
+   <form method="POST" enctype="multipart/form-data" class="bg-light p-4">
+    <h4 class="my-4">Formulaire de création d'une leçon</h4>
        {% csrf_token %}
        {{ form.as_p }}
-       <input type="submit" value="confirmer la creation" class="btn btn-primary mt-3">
+       <input type="submit" value="Confirmer la création" class="btn btn-primary mt-3">
    </form>
 </div>
 </div>
 </div>
 
-{% endblock %} 
+{% endblock %}
