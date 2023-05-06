@@ -50,24 +50,31 @@
                   <li class="nav-item">
                      <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
                         data-bs-placement="bottom" href="{% url 'programmes:niveaulist' %}" title="Cours"><i class="fas fa-book"></i> Cours</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" href="{% url 'profile' %}" title="Cours"><i class="fas fa-user"></i> Profile</a>
-                  </li>  
+                  </li> 
                </ul>
-                  <ul class="navbar-nav">
-                     {% if request.user.is_superuser %}
-                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" aria-current="page" href="{% url 'admin_panel' %}"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-user-graduate"></i> Admin Panel </a>
-                     </li>
-                     {% endif %}
-                     <li class="nav-item">
-                        <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
-                           data-bs-placement="bottom" href="{% url 'logout' %}" title="Se deconnecter"><i class="fas fa-sign-out-alt"></i> Se deconnecter</a>
-                     </li>
-                 </ul>
+                      <div class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                           <img class="profile-pic" src="{{ request.user.picture.url }}">
+                           {{ request.user.get_full_name|truncatechars:15 }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                           {% if request.user.is_superuser %}
+                           <a class="dropdown-item" href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>Admin
+                              Panel</a>
+                           {% endif %}
+                           <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-address-card"></i>Profile</a>
+                           <a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Parameter</a>
+                           <hr>
+                           <div class="dropdown-divider"></div>
+                           <div style="display: flex; justify-content: center; align-items: center;">
+                              <a class="btn btn-danger" href="{% url 'logout' %}">
+                                 <i class="fas fa-sign-out-alt"></i> logout
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+            
                   {% endif %}
                
          </div>
