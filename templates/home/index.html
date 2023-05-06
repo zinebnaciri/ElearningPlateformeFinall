@@ -3,100 +3,219 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    {% if request.user.is_superuser %}
-    <div class="manage-wrap">
-        <a class="btn btn-info" href="{% url 'add_item' %}"><i class="fas fa-plus"></i> Add Post</a>
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+        <h1>Learning Today,<br>Leading Tomorrow</h1>
+        <h2>Welcome to Emsi Elearning plateforme</h2>
+        <a href="{% url 'programmes:niveaulist' %}" class="btn-get-started">Get Started</a>
     </div>
-    {% endif %}
+</section>
+<section id="news" class="counts section-bg">
+    <div class="container" data-aos="fade-up">
+        <div class="container">
+            <style>
+                .color-indicator {
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 2px;
+                }
 
-    {% if messages %}
-    {% for message in messages %}
-    {% if message.tags == 'error' %}
-    <div class="alert alert-danger">
-        <i class="fas fa-exclamation-circle"></i> {{ message }}
-    </div>
-    {% else %}
-    <div class="alert alert-success">
-        <i class="fas fa-check-circle"></i> {{ message }}
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
+                .bg-warning {
+                    background-color: #ffc107;
+                }
 
-    <style>
-        .color-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
-        }
-    
-        .bg-warning {
-            background-color: #ffc107;
-        }
-    
-        .bg-purple {
-            background-color: blue;
-        }
-    </style>
-    
-    <div class="col-md-2 ml-auto d-flex">
-        <div class="mr-3">
-            <span class="color-indicator bg-purple"></span>
-            <span class="ml-1">News</span>
-        </div>
-        <div>
-            <span class="color-indicator bg-warning"></span>
-            <span class="ml-1">Events</span>
-        </div>
-    </div>
-    
-    
+                .bg-purple {
+                    background-color: blue;
+                }
+            </style>
+            {% if request.user.is_superuser %}
+            <div>
+                <a class="btn btn-info" href="{% url 'add_item' %}">
+                    <i class="fas fa-plus"></i> Add Post
+                </a>
+            </div>
+            {% endif %}
 
-    
-    
-    
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i> {{ message }}
+            </div>
+            {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> {{ message }}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <div class="col-md-2 ml-auto d-flex">
 
-    <div class="row">
-        {% for item in items %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-header-ne {% if item.posted_as == 'News' %}bg-primary text-white{% else %}bg-warning text-white{% endif %} p-2">
 
-                    <h5 class="card-title">{{ item.title|title }}</h5>
-                    {% if request.user.is_superuser %}
-                    <div class="dropdown">
-                        <button class="btn btn-sm" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="fas fa-ellipsis-v text-white"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'edit_post' pk=item.id %}"><i
-                                    class="fas fa-pencil-alt"></i> Edit</a>
-                            <a class="dropdown-item" href="{% url 'delete_post' pk=item.id %}"><i
-                                    class="fas fa-trash-alt"></i> Delete</a>
-                        </div>
-                    </div>
-                    {% endif %}
+                <div class="mr-3">
+                    <span class="color-indicator bg-purple"></span>
+                    <span class="ml-1">News</span>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">{{ item.summary }}</p>
-                    <div class="date-wrapper">
-                        <i class="fa fa-clock mr-2"></i>
-                        {{ item.updated_date|timesince }} ago
-                    </div>
+                <div>
+                    <span class="color-indicator bg-warning"></span>
+                    <span class="ml-1">Events</span>
                 </div>
             </div>
+
+            <div class="row">
+                {% for item in items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div
+                            class="card-header-ne {% if item.posted_as == 'News' %}bg-primary text-white{% else %}bg-warning text-white{% endif %} p-2">
+
+                            <h5 class="card-title">{{ item.title|title }}</h5>
+                            {% if request.user.is_superuser %}
+                            <div class="dropdown">
+                                <button class="btn btn-sm" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v text-white"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{% url 'edit_post' pk=item.id %}"><i
+                                            class="fas fa-pencil-alt"></i> Edit</a>
+                                    <a class="dropdown-item" href="{% url 'delete_post' pk=item.id %}"><i
+                                            class="fas fa-trash-alt"></i> Delete</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ item.summary }}</p>
+                            <div class="date-wrapper">
+                                <i class="fa fa-clock mr-2"></i>
+                                {{ item.updated_date|timesince }} ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if items %}
+            {% else %}
+            <p class="text-center">
+                <i class="far fa-frown fa-2x"></i> It's empty.
+            </p>
+            {% endif %}
         </div>
-        {% endfor %}
+
+    </div>
+</section>
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                <h3>About Emsi</h3>
+                <p>
+                    Depuis sa création en 1986, l’École Marocaine des Sciences de l’Ingénieur a axé son projet
+                    pédagogique sur la qualité de sa formation et sur une forte employabilité de ses lauréats.
+                    L’excellence académique de son corps professoral, son observatoire des métiers et l’intégration de
+                    l’évolution technologique ont contribué à assoir sa notoriété. L’école prête un fort intérêt pour la
+                    recherche, le développement et l’innovation. Elle met tout en œuvre pour porter haut et fort les
+                    ambitions et idéaux de notre pays en matière d’invention.Dans ce sens, elle aspire à continuer à le
+                    représenter honorablement dans de prestigieux évènements internationaux. Depuis 34 ans au service de
+                    l’économie Marocaine, l’EMSI a pour ambition de contribuer au développement du continent et à la
+                    formation des futurs leaders Panafricains.
+                </p>
+                <a href="https://www.emsi.ma/" class="">Learn More </a>
+            </div>
+            <div class="col-lg-6  order-2 order-lg-1" data-aos="fade-left" data-aos-delay="100">
+                <img src="../../static/images/About.PNG" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section><!-- End About Section -->
+<section id="why-us" class="why-us">
+    <div class="container" data-aos="fade-up">
+        <h1> WHY US</h1>
+        <div class="row">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+                <div class="row">
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                        <div class="icon-box mt-4 mt-xl-0">
+                            <i class="bx bx-receipt"></i>
+                            <h4>Enhanced Learning Experience</h4>
+                            <p>Experience an interactive and engaging learning journey like never before
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                        <div class="icon-box mt-4 mt-xl-0">
+                            <i class="bx bx-cube-alt"></i>
+                            <h4>Flexible Learning Opportunities</h4>
+                            <p>Embrace the freedom to learn at your own pace, anytime and anywhere
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                        <div class="icon-box mt-4 mt-xl-0">
+                            <i class="bx bx-images"></i>
+                            <h4>Personalized Learning Paths</h4>
+                            <p>Tailor your learning journey to match your unique goals and interests</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End .content-->
+        </div>
+    </div>
+</section><!-- End Why Us Section -->
+
+<footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>EMSI</h3>
+            <p>
+              Marrakech <br>
+             Gueliz<br>
+              Centre <br><br>
+              <strong>Phone:</strong> 0677889988<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#news">Events & News</a></li>
+             
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nos Filières</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i>  Ingénierie Informatique et Réseaux</li>
+              <li><i class="bx bx-chevron-right"></i> Ingénierie Informatique et Réseaux</li>
+              <li><i class="bx bx-chevron-right"></i> Génie Civil, Bâtiments et Travaux Publics</li>
+              <li><i class="bx bx-chevron-right"></i> Génie Industriel</li>
+              <li><i class="bx bx-chevron-right"></i> Ingénierie des Automatismes et Informatique Industrielle</li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <img src="../../static/images/footer.PNG" class="img-fluid" alt="">
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    {% if items %}
-    {% else %}
-    <p class="text-center">
-        <i class="far fa-frown fa-2x"></i> It's empty.
-    </p>
-    {% endif %}
-</div>
+  </footer><!-- End Footer -->
+
+
+
 {% endblock content %}
