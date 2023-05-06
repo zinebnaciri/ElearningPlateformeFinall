@@ -2,11 +2,20 @@
 
 {% block content %}
 <div class="container">
-  <h4 class="mb-4">Liste des niveaux</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="mb-4 d-inline">Liste des niveaux</h4>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <a class="btn btn-primary" href="{% url 'acceuil' %}">Acceuil</a>
+    </div>
+  </div>
+  <div class="my-4"></div>
   <div class="list-group">
     {% for niveau in niveaux %}
     <a href="{% url 'programmes:matierelist' slug=niveau.slug %}" class="list-group-item list-group-item-action">{{ niveau.nom }}</a>
     {% endfor %}
   </div>
 </div>
+
 {% endblock %}

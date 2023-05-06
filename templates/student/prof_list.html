@@ -2,12 +2,19 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
+<div class="d-flex align-items-center">
+    <div class="title-1"><i class="fas fa-user-graduate"></i> Prof List</div>
+    <div class="ml-auto">
+      <div class="input-group-append ml-2">
+        <input type="text" class="form-control" placeholder="Rechercher par nom" aria-label="Rechercher une leçon" id="search-input">
+     
+      {% if request.user.is_superuser %}
+      <a class="add-button" href="{% url 'add_prof' %}"><i class="fas fa-plus"></i>Add</a>
+      {% endif %}
+    </div>
+    </div>
+  </div>
 
-{% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_prof' %}"><i class="fas fa-plus"></i>Add</a>
-{% endif %}
-
-<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Prof List</p>
 
 {% if messages %}
     {% for message in messages %}
@@ -87,7 +94,7 @@
         </tbody>
     </table>
 </div>
-{% endblock content %}
+
 
 {% block js %}
 <script>
@@ -103,4 +110,17 @@
     }
     xhr.send()
 </script>
+<script>
+    $(document).ready(function() {
+        $('#search-input').on('keyup', function() {
+            var searchText = $(this).val().toLowerCase();
+    
+            $('table tbody tr').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+            });
+        });
+    });
+    </script>
+
+{% endblock %}
 {% endblock %}

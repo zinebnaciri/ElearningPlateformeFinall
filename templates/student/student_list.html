@@ -2,9 +2,7 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-{% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_student' %}"><i class="fas fa-plus"></i>Add</a>
-{% endif %}
+
 
 {% if messages %}
     {% for message in messages %}
@@ -19,7 +17,22 @@
         {% endif %}
     {% endfor %}
 {% endif %}
-<div class="title-1"><i class="fas fa-user-graduate"></i>Students List</div>
+
+<div class="d-flex align-items-center">
+    <div class="title-1"><i class="fas fa-user-graduate"></i> Students List</div>
+    <div class="ml-auto">
+      <div class="input-group-append ml-2">
+        <input type="text" class="form-control" placeholder="Rechercher par nom" aria-label="Rechercher une leçon" id="search-input">
+     
+      {% if request.user.is_superuser %}
+      <a class="add-button btn btn-primary ml-2" href="{% url 'add_student' %}"><i class="fas fa-plus"></i> Add</a>
+      {% endif %}
+    </div>
+    </div>
+  </div>
+  
+  
+  
 <div class="table-responsive table-shadow table-light table-striped m-0 mt-5">
     <table class="table">
         <thead>
@@ -79,4 +92,6 @@
         </tbody>
     </table>
 </div>
+
+
 {% endblock content %}

@@ -9,6 +9,7 @@
             <div class="d-flex justify-content-center">
                 <input class="btn btn-danger mr-3" type="submit" value="Supprimer définitivement">
                 <a class="btn btn-primary" href="{% url 'programmes:lessonlistdetail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}">Annuler</a>
+                
             </div>
         </form>
     </div>
