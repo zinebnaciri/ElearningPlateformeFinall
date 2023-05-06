@@ -28,8 +28,8 @@
 - $ python3 manage.py migrate
 - $ python3 manage.py runserver
 
-# Accédez à l'application en ouvrant votre navigateur Web et en accédant à l'URL suivante :  
-## http://127.0.0.1:8000
+### Accédez à l'application en ouvrant votre navigateur Web et en accédant à l'URL suivante :  
+#### http://127.0.0.1:8000
     
 
 ### Technologies
