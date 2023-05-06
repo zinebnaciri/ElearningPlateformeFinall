@@ -11,20 +11,19 @@ from .validators import ASCIIUsernameValidator
 User = settings.AUTH_USER_MODEL
 
 # LEVEL_COURSE = "Level course"
-BACHLOAR_DEGREE = "Bachloar"
-MASTER_DEGREE = "Master"
+LP = "Licence"
+MS = "Master"
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHLOAR_DEGREE, "Bachloar Degree"),
-    (MASTER_DEGREE, "Master Degree"),
+    (LP, "Licence"),
+    (MS, "Master"),
 )
 
 
 class User(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_lecturer = models.BooleanField(default=False)
-    is_parent = models.BooleanField(default=False)
     is_dep_head = models.BooleanField(default=False)
     phone = models.CharField(max_length=60, blank=True, null=True)
     address = models.CharField(max_length=60, blank=True, null=True)
@@ -51,7 +50,8 @@ class User(AbstractUser):
             return "Admin"
         elif self.is_student:
             return "Student"
-
+        elif self.is_lecturer:
+            return "Prof"
     def get_picture(self):
         try:
             return self.picture.url

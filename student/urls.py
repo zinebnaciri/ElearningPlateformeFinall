@@ -16,18 +16,17 @@ from .forms import EmailValidationOnForgotPassword
 
 urlpatterns = [
     path('', include('django.contrib.auth.urls')),
+    path('register/', register, name='register'),
     
-    path('admin_panel/', admin_panel, name='admin_panel'),
-
     path('profile/', profile, name='profile'),
     path('profile/<int:id>/detail/', profile_single, name='profile_single'),
     path('setting/', profile_update, name='edit_profile'),
     path('change_password/', change_password, name='change_password'),
 
-    path('lecturers/', LecturerListView.as_view(), name='lecturer_list'),
-    path('lecturer/add/', staff_add_view, name='add_lecturer'),
-    path('staff/<int:pk>/edit/', edit_staff, name='staff_edit'),
-    path('lecturers/<int:pk>/delete/', delete_staff, name='lecturer_delete'),
+    path('profs/', LecturerListView.as_view(), name='prof_list'),
+    path('prof/add/', staff_add_view, name='add_prof'),
+    path('prof/<int:pk>/edit/', edit_staff, name='prof_edit'),
+    path('prof/<int:pk>/delete/', delete_staff, name='prof_delete'),
 
     path('students/', StudentListView.as_view(), name='student_list'),
     path('student/add/', student_add_view, name='add_student'),
@@ -36,7 +35,7 @@ urlpatterns = [
 
     path('ajax/validate-username/', validate_username, name='validate_username'),
 
-    path('register/', register, name='register'),
-
+    
+    path('admin_panel/', admin_panel, name='admin_panel'),
 
 ]
