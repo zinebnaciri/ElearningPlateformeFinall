@@ -39,9 +39,9 @@
             <tr>
                 <th>id</th>
                 <th> username </th>
-                <th> First name </th>
-                <th>Last name </th>
+                <th> Full Name </th>
                 <th> Email </th>
+                <th> Tell </th>
                 {% if request.user.is_superuser %}
                 <th> Action </th>
                 {% endif %}
@@ -52,9 +52,9 @@
             <tr>
                 <td><a href="{% url 'profile_single' student.student.id %}">{{ forloop.counter }}</td>
                 <td>{{ student.student.username }} </td>
-                <td>{{ student.student.first_name }}</td>
-                <td>{{ student.student.last_name }}</td>
+                <td>{{ student.student.get_full_name }}</td>
                 <td>{{ student.student.email }} </td>
+                <td>{{ student.student.phone }} </td>
                 {% if request.user.is_superuser %}
                 <td>
                     <div class="update-delete">
