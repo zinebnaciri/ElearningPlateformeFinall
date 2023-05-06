@@ -2,19 +2,23 @@
 
 {% block content %}
     <div class="container">
+       
         <h3 class="mb-4">La leçon intitulée {{ lesson.nom }} a été créée par Prof: {{ lesson.creer_par }}</h3>
+        {% if request.user.is_superuser %}
         <a href="{% url 'programmes:lessonupdate' niveau=lesson.niveau.slug matiere=lesson.matiere.slug slug=lesson.slug %}" class="btn btn-primary mr-2">Modifier la leçon</a>
         <a href="{% url 'programmes:lessondelete' niveau=lesson.niveau.slug matiere=lesson.matiere.slug slug=lesson.slug %}" class="btn btn-danger">Supprimer la leçon</a> <br><br>
+        {% endif %}
         {% if lesson.video %}
-<video width="400" controls>
-  <source src="{{ lesson.video }}" type="video/mp4">
+        <div style="width: 90%; margin: auto;">
+            <video width="100%" controls>
+              <source src="{{ lesson.video.url }}" type="video/mp4">
+              Your browser does not support HTML video.
+            </video>
+          </div>
+          <p style="font-size: 24px; color: #333; font-weight: bold; text-align: center;">Titre du cours: {{ lesson.nom }}</p>
 
-  Your browser does not support HTML video.
-</video>
-
-            <div class="embed-responsive embed-responsive-16by9 mb-4">
-                <iframe class="embed-responsive-item" src="{{ lesson.video.url }}" allowfullscreen></iframe>
-            </div>
+          
+           
         {% endif %}
         <div class="row">
             {% if lesson.pdf %}

@@ -23,7 +23,7 @@
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark navbar-mod">
          <div class="container-fluid">
             <a class="navbar-brand fw-bold fs-5 px-2 py-1" target="_blank" data-bs-toggle="tooltip"
-               data-bs-placement="bottom" title="Access admin panel">Akmsa Elearning</a>
+               data-bs-placement="bottom" title="Access admin panel">Elearning</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
                aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
             <span class=" navbar-toggler-icon"></span>
@@ -32,30 +32,30 @@
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                      <a class="nav-link active fw-bold" aria-current="page" href="{% url 'acceuil' %}"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-home"></i>Acceuil</a>
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-home"></i> Acceuil</a>
                   </li>
 
                   {% if request.user.is_superuser %}
                   <li class="nav-item">
                      <a class="nav-link active fw-bold" aria-current="page" href="{% url 'student_list' %}"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-user-graduate"></i>Students</a>
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-user-graduate"></i> Students</a>
                   </li>
                   {% endif %}
                   {% if user.is_authenticated %}
                      
                   <li class="nav-item">
                      <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" href="{% url 'programmes:niveaulist' %}" title="Cours"><i class="fas fa-book"></i>Cours</a>
+                        data-bs-placement="bottom" href="{% url 'programmes:niveaulist' %}" title="Cours"><i class="fas fa-book"></i> Cours</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" href="{% url 'profile' %}" title="Cours"><i class="fas fa-user"></i>Profile</a>
+                        data-bs-placement="bottom" href="{% url 'profile' %}" title="Cours"><i class="fas fa-user"></i> Profile</a>
                   </li>  
                </ul>
                   <ul class="navbar-nav">
                      <li class="nav-item">
                         <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
-                           data-bs-placement="bottom" href="{% url 'logout' %}" title="Se deconnecter"><i class="fas fa-sign-out-alt"></i>Se deconnecter</a>
+                           data-bs-placement="bottom" href="{% url 'logout' %}" title="Se deconnecter"><i class="fas fa-sign-out-alt"></i> Se deconnecter</a>
                      </li>
                  </ul>
                   {% endif %}
