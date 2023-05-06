@@ -39,9 +39,7 @@
                 <th> Username </th>
                 <th> Full Name </th>
                 <th> Email </th>
-                <th> Mob No. </th>
-                <th> Address/city </th>
-                <th> Last login </th>
+                <th> Tell </th>
                 {% if request.user.is_superuser %}
                 <th> Action </th>
                 {% endif %}
@@ -55,8 +53,6 @@
                 <td>{{ prof.get_full_name }}</a></td>
                 <td>{{ prof.email }}</td>
                 <td>{{ prof.phone }}</td>
-                <td>{{ prof.address }}</td>
-                <td>{{ prof.last_login }}</td>
                 {% if request.user.is_superuser %}
                 <td> 
                     <div class="update-delete">
