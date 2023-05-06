@@ -64,7 +64,15 @@
          </div>
       </nav>
      
-        <center>    <div class="title-1">Welcome {{request.user.username}}</div> </center>
+      <div class="container mt-4">
+         <div class="row justify-content-left">
+           <div class="col-md-8">
+             <div class="text-left">
+               <h3 class="mb-4">Welcome {{request.user.username}}</h3>
+             </div>
+           </div>
+         </div>
+       </div>
 
       <!-- Navbar Ends -->
       {% block  content %}

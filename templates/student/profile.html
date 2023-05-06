@@ -22,79 +22,78 @@
             {% endfor %}
         {% endif %}
 
-        <div class="container-fluid mt-3">
-            <div class="row">
-                <div class="col-12 col-md-6 mx-auto">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
                     <div class="card shadow">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-user"></i> Login Info</h5>
-                            <div class="card-text">
-                                <p><strong>Last login: </strong>{{ user.last_login|date }}</p>
-                                <p><strong>Full Name: </strong>{{ user.get_full_name|title }}</p>
-                                <p><strong>Role: </strong>{{ user.get_user_role }}</p>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title"><i class="fas fa-lock"></i> Login Info</h3>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 mx-auto mt-3">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-user"></i> Personal Info</h5>
-                            <div class="card-text">
-                                <p><strong>First Name:</strong> {{ user.first_name|title }}</p>
-                                <p><strong>Last Name:</strong> {{ user.last_name|title }}</p>
-                                <p><strong>ID No.:</strong> {{ user.username }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% if user.is_student %}
-                    <div class="col-12 col-md-6 mx-auto mt-3">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-graduation-cap"></i> Applicant Info</h5>
-                                <div class="card-text">
-                                    <p><strong>School: </strong>Hawas Preparatory School</p>
-                                    <p><strong>Level: </strong>{{ level.level }}</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    
+                                    <p><strong>Full Name: </strong>{{ user.get_full_name|title }}</p>
+                                    <p><strong>Role: </strong>{{ user.get_user_role }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p><strong>Email:</strong> {{ user.email }}</p>
+                                    <p><strong>Tel No.:</strong> {{ user.phone }}</p>
+                                    <p><strong>Address/city:</strong> {{ user.address }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% endif %}
-
-                <div class="col-12 col-md-6 mx-auto mt-3">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-md-8 mx-auto">
                     <div class="card shadow">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-phone-square-alt"></i> Contact Info</h5>
-                            <div class="card-text">
-                                <p><strong>Email:</strong> {{ user.email }}</p>
-                                <p><strong>Tel No.:</strong> {{ user.phone }}</p>
-                                <p><strong>Address/city:</strong> {{ user.address }}</p>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title"><i class="fas fa-user"></i> Personal Info</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p><strong>First Name:</strong> {{ user.first_name|title }}</p>
+                                    <p><strong>Last Name:</strong> {{ user.last_name|title }}</p>
+                                    <p><strong>ID No.:</strong> {{ user.username }}</p>
+                                </div>
+                                {% if user.is_student %}
+                                    <div class="col-6">
+                                        <p><strong>School: </strong>EMSI</p>
+                                        <p><strong>Level: </strong>{{ level.level }}</p>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-             <div class="col-12 col-md-6 mx-auto mt-3">
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-md-8 mx-auto">
                     <div class="card shadow">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fa fa-calendar-day"></i> Important Dates</h5>
-                            <div class="card-text">
-                               <p><strong>Last login:</strong> {{ user.last_login }}</p>
-                                  <p><strong> Academic Year:</strong> {{ current_semester }} Semester {{ current_session }}</p>
-                                  <p><strong>Registered Date:</strong> {{ user.date_joined|date }}</p>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title"><i class="fa fa-calendar-day"></i> Important Dates</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p><strong>Last login:</strong> {{ user.last_login }}</p>
+                                    <p><strong>Academic Year:</strong> 2023</p>
+                                    <p><strong>Registered Date:</strong> {{ user.date_joined|date }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
+            </div>
         </div>
-    </div>
-
-{% endif %}
-
+    {% endif %}
 {% endblock content %}
