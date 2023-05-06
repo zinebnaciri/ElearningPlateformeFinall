@@ -3,14 +3,11 @@
 
 {% block content %}
 
-<div id="input-nav"> <i>&rsaquo;</i> Lecturers</div>
-
 {% if request.user.is_superuser %}
-<a class="add-button" href="{% url 'add_lecturer' %}"><i class="fas fa-plus"></i>Add Lecturer</a>
+<a class="add-button" href="{% url 'add_prof' %}"><i class="fas fa-plus"></i>Add</a>
 {% endif %}
 
-<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Lecturers List</p>
-<div class="title-line"></div>
+<p class="title-1"><i class="fas fa-chalkboard-teacher"></i>Prof List</p>
 
 {% if messages %}
     {% for message in messages %}
@@ -26,23 +23,13 @@
     {% endfor %}
 {% endif %}
 
-<div class="content-center">
-    <form class="search-form" action="" method="POST">{% csrf_token %}
-        <input class="au-input" type="text" name="id_no" placeholder="ID No." value="{{ request.GET.id_no }}"/>
-        <input class="au-input" type="text" name="name" placeholder="Name" value="{{ request.GET.name }}"/>
-        <input class="au-input" type="text" name="email" placeholder="Email" value="{{ request.GET.email }}"/>
-        <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> filter
-        </button>
-    </form>
-</div>
 
 <div class="table-responsive table-shadow table-light table-striped m-0 mt-5">
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
-                <th> ID No. </th>
+                <th>id</th>
+                <th> Username </th>
                 <th> Full Name </th>
                 <th> Email </th>
                 <th> Mob No. </th>
@@ -54,20 +41,20 @@
             </tr>
         </thead>
         <tbody>
-            {% for lecturer in object_list %}
+            {% for prof in object_list %}
             <tr>
-                <td> {{ forloop.counter }}.</td>
-                <td>{{ lecturer.username }}</td>
-                <td><a href="{% url 'profile_single' lecturer.id %}">{{ lecturer.get_full_name }}</a></td>
-                <td>{{ lecturer.email }}</td>
-                <td>{{ lecturer.phone }}</td>
-                <td>{{ lecturer.address }}</td>
-                <td>{{ lecturer.last_login }}</td>
+                <td><a href="{% url 'profile_single' prof.id %}"> {{ forloop.counter }}</td>
+                <td>{{ prof.username }}</td>
+                <td>{{ prof.get_full_name }}</a></td>
+                <td>{{ prof.email }}</td>
+                <td>{{ prof.phone }}</td>
+                <td>{{ prof.address }}</td>
+                <td>{{ prof.last_login }}</td>
                 {% if request.user.is_superuser %}
                 <td> 
                     <div class="update-delete">
-                        <a href="{% url 'staff_edit' pk=lecturer.pk %}" class="update"><i class="fas fa-edit"></i></a>
-                        <form action="{% url 'lecturer_delete' pk=lecturer.pk %}">{% csrf_token %}
+                        <a href="{% url 'prof_edit' pk=prof.pk %}" class="update"><i class="fas fa-edit"></i></a>
+                        <form action="{% url 'prof_delete' pk=prof.pk %}">{% csrf_token %}
                             <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </div>
@@ -80,11 +67,11 @@
                   <td></td>
                   <td>
                   <span class="text-danger">
-                    <i class="far fa-frown"></i>No Lecturer(s).
+                    <i class="far fa-frown"></i>No prof(s).
                     {% if request.user.is_superuser %}
-                    <a href="{% url 'add_lecturer' %}">
+                    <a href="{% url 'add_prof' %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add Lecturer Now.
+                       Add prof!
                     </i>
                     {% endif %}
                     </a>
@@ -106,7 +93,7 @@
 <script>
     const xhr = new XMLHttpRequest()
     const method = 'GET'
-    const url = "/accounts/lecturers/"
+    const url = "/accounts/profs/"
     const responseType = "json"
   
     xhr.responseType = responseType

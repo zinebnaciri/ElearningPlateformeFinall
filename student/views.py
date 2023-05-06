@@ -82,7 +82,7 @@ def profile_single(request, id):
 @login_required
 @admin_required
 def admin_panel(request):
-    return render(request, 'setting/admin_panel.html', {})
+    return render(request, 'admin_panel.html', {})
 # ########################################################
 
 @login_required
@@ -97,7 +97,7 @@ def profile_update(request):
             messages.error(request, 'Please correct the error(s) below.')
     else:
         form = ProfileUpdateForm(instance=request.user)
-    return render(request, 'setting/profile_info_change.html', {
+    return render(request, 'student/profile_info_change.html', {
         'title': 'Elearning',
         'form': form,
     })
@@ -116,7 +116,7 @@ def change_password(request):
             messages.error(request, 'Please correct the error(s) below. ')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'setting/password_change.html', {
+    return render(request, 'student/password_change.html', {
         'form': form,
     })
 # ########################################################
@@ -130,8 +130,8 @@ def staff_add_view(request):
         last_name = request.POST.get('last_name')
         if form.is_valid():
             form.save()
-            messages.success(request, "Account for lecturer " + first_name + ' ' + last_name + " has been created.")
-            return redirect("lecturer_list")
+            messages.success(request, "prof " + first_name + ' ' + last_name + " has been created.")
+            return redirect("prof_list")
     else:
         form = StaffAddForm()
 
@@ -140,7 +140,7 @@ def staff_add_view(request):
         'form': form,
     }
 
-    return render(request, 'student/add_staff.html', context)
+    return render(request, 'student/add_prof.html', context)
 
 
 @login_required
@@ -153,13 +153,13 @@ def edit_staff(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, 'Lecturer ' + full_name + ' has been updated.')
-            return redirect('lecturer_list')
+            messages.success(request, 'prof ' + full_name + ' has been updated.')
+            return redirect('prof_list')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
         form = ProfileUpdateForm(instance=instance)
-    return render(request, 'student/edit_lecturer.html', {
+    return render(request, 'student/edit_prof.html', {
         'title': 'Elearning',
         'form': form,
     })
@@ -168,7 +168,7 @@ def edit_staff(request, pk):
 @method_decorator([login_required, admin_required], name='dispatch')
 class LecturerListView(ListView):
     queryset = User.objects.filter(is_lecturer=True)
-    template_name = "student/lecturer_list.html"
+    template_name = "student/prof_list.html"
     paginate_by = 10  # if pagination is desired
 
     def get_context_data(self, **kwargs):
@@ -182,8 +182,8 @@ def delete_staff(request, pk):
     lecturer = get_object_or_404(User, pk=pk)
     full_name = lecturer.get_full_name
     lecturer.delete()
-    messages.success(request, 'Lecturer ' + full_name + ' has been deleted.')
-    return redirect('lecturer_list')
+    messages.success(request, 'prof ' + full_name + ' has been deleted.')
+    return redirect('prof_list')
 # ########################################################
 
 @login_required

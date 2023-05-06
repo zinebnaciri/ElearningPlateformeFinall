@@ -40,6 +40,10 @@
                      <a class="nav-link active fw-bold" aria-current="page" href="{% url 'student_list' %}"
                         data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-user-graduate"></i> Students</a>
                   </li>
+                  <li class="nav-item">
+                     <a class="nav-link active fw-bold" aria-current="page" href="{% url 'prof_list' %}"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-user-graduate"></i> Prof</a>
+                  </li>
                   {% endif %}
                   {% if user.is_authenticated %}
                      
@@ -53,6 +57,12 @@
                   </li>  
                </ul>
                   <ul class="navbar-nav">
+                     {% if request.user.is_superuser %}
+                     <li class="nav-item">
+                        <a class="nav-link active fw-bold" aria-current="page" href="{% url 'admin_panel' %}"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Course home page"><i class="fas fa-user-graduate"></i> Admin Panel </a>
+                     </li>
+                     {% endif %}
                      <li class="nav-item">
                         <a class="nav-link active fw-bold"  data-bs-toggle="tooltip"
                            data-bs-placement="bottom" href="{% url 'logout' %}" title="Se deconnecter"><i class="fas fa-sign-out-alt"></i> Se deconnecter</a>
