@@ -12,7 +12,7 @@
 - programmes :
     - dans cette application vous trouverez toutes le fonctionnalités permettant CRUD des cours, matieres, lessons ...
 - static:
-    - ce dossier contient tout les composants de style statiques qu 'on a utilisé
+    - ce dossier contient tout les composants de style statiques qu 'on a utilisé (css , js... )
 - student:
     - dans cette application vous trouverez toutes le fonctionnalités permettant CRUD des utilisateurs(etudiant ou prof)
 - templates:
@@ -27,6 +27,9 @@
 - $ python3 manage.py makemigrations
 - $ python3 manage.py migrate
 - $ python3 manage.py runserver
+
+### Accédez à l'application en ouvrant votre navigateur Web et en accédant à l'URL suivante :
+#### http://127.0.0.1:8000
     
 
 ### Technologies
