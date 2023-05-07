@@ -1,4 +1,8 @@
-### Description du projet
+## Conception du projet
+![our pro](https://user-images.githubusercontent.com/121731124/236692173-762f4bd6-080e-43f6-9d0f-4b4cef640d01.png)
+
+
+## Description du projet
 - Le projet en Django E-learning consiste en la création d'un site e-learning dynamique et interactif. Ce site permettra aux utilisateurs d'accéder à une plateforme en ligne où ils pourront suivre des cours (Video, telecharger le pdf et la presentation du cours) et acquérir de nouvelles connaissances selon les prerequis de l'école. L'architecture du site est basée sur le framework Django, offrant une structure solide et modulaire pour le développement. Les fonctionnalités clés du site incluent la création de profils d'utilisateurs, la gestion des cours et des modules.  L'interface utilisateur est conviviale et intuitive, offrant une navigation fluide et une expérience d'apprentissage agréable. Le projet s'appuie sur les bonnes pratiques de développement web et utilisera des technologies complémentaires telles que HTML, CSS et JavaScript pour créer un design attrayant et réactif.
 
 
