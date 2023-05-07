@@ -1,96 +1,92 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock title %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
 
 {% block content %}
-<div class="d-flex align-items-center">
-    <div class="title-1"><i class="fas fa-user-graduate"></i> Prof List</div>
-    <div class="ml-auto">
-      <div class="input-group-append ml-2">
-        <input type="text" class="form-control" placeholder="Rechercher par nom" aria-label="Rechercher une leçon" id="search-input">
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div class="title-1 text-center"><i class="fas fa-user-graduate"></i> Prof List</div>
+    <div class="input-group w-auto">
+      <input type="text" class="form-control" placeholder="Rechercher par nom" aria-label="Rechercher une leçon" id="search-input">
      
       {% if request.user.is_superuser %}
-      <a class="add-button" href="{% url 'add_prof' %}"><i class="fas fa-plus"></i>Add</a>
+      <a  class="btn btn-primary btn-sm ml-2" href="{% url 'add_prof' %}"><i class="fas fa-plus"></i> Add</a>
       {% endif %}
-    </div>
     </div>
   </div>
 
-
-{% if messages %}
+  {% if messages %}
     {% for message in messages %}
-        {% if message.tags == 'error' %}
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i>{{ message }}
-            </div>
-        {% else %}
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i>{{ message }}
-            </div>
-        {% endif %}
+      {% if message.tags == 'error' %}
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-circle"></i> {{ message }}
+        </div>
+      {% else %}
+        <div class="alert alert-success">
+          <i class="fas fa-check-circle"></i> {{ message }}
+        </div>
+      {% endif %}
     {% endfor %}
-{% endif %}
+  {% endif %}
 
-
-<div class="table-responsive table-shadow table-light table-striped m-0 mt-5">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th> Username </th>
-                <th> Full Name </th>
-                <th> Email </th>
-                <th> Tell </th>
-                {% if request.user.is_superuser %}
-                <th> Action </th>
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for prof in object_list %}
-            <tr>
-                <td><a href="{% url 'profile_single' prof.id %}"> {{ forloop.counter }}</td>
-                <td>{{ prof.username }}</td>
-                <td>{{ prof.get_full_name }}</a></td>
-                <td>{{ prof.email }}</td>
-                <td>{{ prof.phone }}</td>
-                {% if request.user.is_superuser %}
-                <td> 
-                    <div class="update-delete">
-                        <a href="{% url 'prof_edit' pk=prof.pk %}" class="update"><i class="fas fa-edit"></i></a>
-                        <form action="{% url 'prof_delete' pk=prof.pk %}">{% csrf_token %}
-                            <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </div>
-                </td>
-                {% endif %}
-                
-                {% empty %}
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>
-                  <span class="text-danger">
-                    <i class="far fa-frown"></i>No prof(s).
-                    {% if request.user.is_superuser %}
-                    <a href="{% url 'add_prof' %}">
-                    <i class="primary" style="font-size: 22px;">
-                       Add prof!
-                    </i>
-                    {% endif %}
-                    </a>
-                  </span>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-
-            </tr>
-            {% endfor %}
-        </tbody>
+  <div class="table-responsive">
+    <table class="table table-shadow table-light table-striped" >
+      <thead class="thead-dark" >
+        <tr>
+          <th>id</th>
+          <th>Username</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Tell</th>
+          {% if request.user.is_superuser %}
+          <th>Action</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for prof in object_list %}
+        <tr>
+          <td><a href="{% url 'profile_single' prof.id %}">{{ forloop.counter }}</td>
+          <td>{{ prof.username }}</td>
+          <td>{{ prof.get_full_name }}</a></td>
+          <td>{{ prof.email }}</td>
+          <td>{{ prof.phone }}</td>
+          {% if request.user.is_superuser %}
+          <td>
+            <div class="update-delete">
+              <a href="{% url 'prof_edit' pk=prof.pk %}" class="update"><i class="fas fa-edit"></i></a>
+              <form action="{% url 'prof_delete' pk=prof.pk %}">{% csrf_token %}
+                <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt text-danger"></i></button>
+              </form>
+            </div>
+          </td>
+          {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <span class="text-danger">
+              <i class="far fa-frown"></i> No prof(s).
+              {% if request.user.is_superuser %}
+              <a href="{% url 'add_prof' %}">
+                <i class="primary" style="font-size: 22px;">Add prof!</i>
+              </a>
+              {% endif %}
+            </span>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
+  </div>
 </div>
-
 
 {% block js %}
 <script>

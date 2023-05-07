@@ -1,85 +1,108 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock title %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-</br></br>
-
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == 'error' %}
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i>{{ message }}
-            </div>
-        {% else %}
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i>{{ message }}
-            </div>
+    <div class="container mt-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+                    {% if message.tags == 'error' %}
+                        <i class="fas fa-exclamation-circle"></i>
+                    {% else %}
+                        <i class="fas fa-check-circle"></i>
+                    {% endif %}
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
         {% endif %}
-    {% endfor %}
-{% endif %}
 
-<form action="" method="POST">{% csrf_token %}
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="card">
-            <p class="form-title">Login Info</p>
-
-            <div class="p-3">
-
-                <div class="form-group">
-                    <b>Username</b>{{ form.username }}
-                    <span class="danger">{{ form.username.errors }}</span>
-                  </div>
-                <div class="form-group">
-                    <b>{{ form.password1.label }}</b>{{ form.password1 }}
-                    <span class="danger">{{ form.password1.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.password2.label }}</b>{{ form.password2 }}
-                    <span class="danger">{{ form.password2.errors }}</span>
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="background-color: rgb(16, 182, 237); border-radius: 10px;">
+                        <h5 class="card-title mb-0 text-light">Login Info</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <label for="{{ form.username.id_for_label }}" class="form-label"><b>Username</b></label>
+                            {{ form.username }}
+                            <span class="text-danger">{{ form.username.errors }}</span>
+                        </div>
+                        <div class="mb-2">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label"><b>{{ form.password1.label }}</b></label>
+                            {{ form.password1 }}
+                            <span class="text-danger">{{ form.password1.errors }}</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label"><b>{{ form.password2.label }}</b></label>
+                            {{ form.password2 }}
+                            <span class="text-danger">{{ form.password2.errors }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-            <p class="form-title">Personal Info</p>
-            <div class="container">
-                
-                <div class="form-group">
-                    <b>{{ form.first_name.label }}</b>{{ form.first_name }}
-                    <span class="danger">{{ form.first_name.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.last_name.label }}</b>{{ form.last_name }}
-                    <span class="danger">{{ form.last_name.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.email.label }}</b>{{ form.email }}
-                    <span class="danger">{{ form.email.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.address.label }}</b>{{ form.address }}
-                    <span class="danger">{{ form.address.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.phone.label }}</b>{{ form.phone }}
-                    <span class="danger">{{ form.phone.errors }}</span>
-                </div>
-            </div>
-            <div class="p-3">
-                <div class="form-group">
-                    <b>{{ form.level.label }}</b>{{ form.level }}
-                    <span class="danger">{{ form.level.errors }}</span>
-                </div>
-            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="background-color: rgb(16, 182, 237); border-radius: 10px;">
+                        <h5 class="card-title mb-0 text-light ">Personal Info</h5>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <b>{{ form.first_name.label }}</b>
+                                    {{ form.first_name }}
+                                    <span class="text-danger">{{ form.first_name.errors }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                   <b>{{ form.last_name.label }}</b>
+                                    {{ form.last_name }}
+                                    <span class="text-danger">{{ form.last_name.errors }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <b>{{ form.email.label }}</b>
+                                {{ form.email }}
+                                <span class="text-danger">{{ form.email.errors }}</span>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <b>{{ form.address.label }}</b>{{ form.address }}
+                                <span class="text-danger">{{ form.address.errors }}</span>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <b>{{ form.phone.label }}</b>{{ form.phone }}
+                                <span class="danger">{{ form.phone.errors }}</span>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <b>{{ form.level.label }}</b>{{ form.level }}
+                                <span class="danger">{{ form.level.errors }}</span>
+                            </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+           
             </div>
         </div>
     </div>
-    <center><input class="btn btn-outline-primary" type="submit" value="Save"></center>
+    <center><input class="btn btn-primary mt-4" type="submit" value="Save"></center>
 </form>
 
 {% endblock content %}

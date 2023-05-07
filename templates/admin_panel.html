@@ -4,36 +4,45 @@
 {% load static %}
 
 {% block content %}
-<<div class="title-1"><i class="fas fa-user-tie"></i>Admin Panel</div>
-<br>
-<br>
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == 'error' %}
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i>{{ message }}
-            </div>
-        {% else %}
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i>{{ message }}
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 p-5 bg-light">
+            <h2 class="text-center"><i class="fas fa-user-tie"></i> Admin Panel</h2>
+            <br>
+            <br>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle"></i> {{ message }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle"></i> {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
 
-<div class="admin-panel">
-    <div class="row">
-        <div class="col-md-6 p-5 bg-gradient-light">
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'prof_list' %}"> Prof &raquo;</a>
-            <p><span>&LongRightArrow;</span> (Create, Update & Delete) prof</p><hr>
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'student_list' %}"> Students &raquo;</a>
-            <p><span>&LongRightArrow;</span> (Create, Update & Delete) students</p><hr>
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'programmes:niveaulist' %}"> Courses &raquo;</a>
-            <p><span>&LongRightArrow;</span> (Create, Update & Delete) courses</p><hr>
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'acceuil' %}"> News&Events &raquo;</a>
-            <p><span>&LongRightArrow;</span> (Create, Update & Delete) News & Events</p>
+            <div class="admin-panel">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Manage</h4>
+                        <a class="btn btn-sm btn-secondary" href="{% url 'prof_list' %}">Manage Profs &raquo;</a>
+                        <p><span>&#x2192;</span> (Create, Update & Delete) prof</p>
+                        <hr>
+                        <a class="btn btn-sm btn-secondary" href="{% url 'student_list' %}">Manage Students &raquo;</a>
+                        <p><span>&#x2192;</span> (Create, Update & Delete) students</p>
+                        <hr>
+                        <a class="btn btn-sm btn-secondary" href="{% url 'programmes:niveaulist' %}">Manage Courses &raquo;</a>
+                        <p><span>&#x2192;</span> (Create, Update & Delete) courses</p>
+                        <hr>
+                        <a class="btn btn-sm btn-secondary" href="{% url 'acceuil' %}">Create News & Events &raquo;</a>
+                        <p><span>&#x2192;</span> (Create, Update & Delete) News & Events</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

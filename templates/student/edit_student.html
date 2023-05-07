@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block content %}<br>
+{% block content %}
 
 <center> <p class="title-1"><i class="fas fa-cogs"></i>Student Update</p> </center>
 <div class="title-line"></div><br>
@@ -22,49 +22,52 @@
     {% endfor %}
 {% endif %}
 
-<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <div class="row mb-3">
-        <div class="col-md-6">
+<div class="container mt-0 mb-5">
+    <form class="row g-2" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-md-12">
             <div class="card">
-            <p class="form-title">Personal Info</p>
-
-            <div class="p-3">
-                <div class="form-group">
-                    <b>{{ form.email.label }}</b>{{ form.email }}
-                    <span class="danger">{{ form.email.errors }}</span>
+                <div class="card-header" style="background-color: rgb(16, 182, 237); border-radius: 10px;">
+                    <h5 class="card-title mb-0 text-light">Email & Personal Info</h5>
                 </div>
-                <div class="form-group">
-                    <b>{{ form.first_name.label }}</b>{{ form.first_name }}
-                    <span class="danger">{{ form.first_name.errors }}</span>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label for="{{ form.email.id_for_label }}" class="form-label"><b>{{ form.email.label }}</b></label>
+                        {{ form.email }}
+                        <span class="text-danger">{{ form.email.errors }}</span>
+                    </div>
+                    <div class="mb-2">
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label"><b>{{ form.first_name.label }}</b></label>
+                        {{ form.first_name }}
+                        <span class="text-danger">{{ form.first_name.errors }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label"><b>{{ form.last_name.label }}</b></label>
+                        {{ form.last_name }}
+                        <span class="text-danger">{{ form.last_name.errors }}</span>
+                    </div>
+                    <div class="mb-2">
+                        <label for="{{ form.phone.id_for_label }}" class="form-label"><b>{{ form.phone.label }}</b></label>
+                        {{ form.phone }}
+                        <span class="text-danger">{{ form.phone.errors }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.address.id_for_label }}" class="form-label"><b>{{ form.address.label }}</b></label>
+                        {{ form.address }}
+                        <span class="text-danger">{{ form.address.errors }}</span>
+                    </div>
+                    <div class="mb-2">
+                        <label for="{{ form.picture.id_for_label }}" class="form-label"><b>Profile Picture</b></label><br>
+                        {{ form.picture }}
+                        <span class="text-danger">{{ form.picture.errors }}</span>
+                    </div>
+                    <center>
+                        <input class="btn btn-primary mt-2" type="submit" value="Save">
+                    </center>
                 </div>
-                <div class="form-group">
-                    <b>{{ form.last_name.label }}</b>{{ form.last_name }}
-                    <span class="danger">{{ form.last_name.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.phone.label }}</b>{{ form.phone }}
-                    <span class="danger">{{ form.phone.errors }}</span>
-                </div>
-                <div class="form-group">
-                    <b>{{ form.address.label }}</b>{{ form.address }}
-                    <span class="danger">{{ form.address.errors }}</span>
-                </div>
-                </div>
-
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-            <p class="form-title">Picture</p>
-            <div class="p-3">
-                <div class="form-group">
-                <br>{{ form.picture }}
-                    <span class="danger">{{ form.picture.errors }}</span>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-    <center><input class="btn btn-outline-primary" type="submit" value="Update"></center>
-</form>
+    </form>
+</div>
+
 {% endblock content %}
