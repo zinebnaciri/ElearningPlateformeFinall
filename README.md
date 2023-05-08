@@ -1,4 +1,4 @@
-## Conception du projet
+## Conception du projet.
 ![our pro](https://user-images.githubusercontent.com/121731124/236692173-762f4bd6-080e-43f6-9d0f-4b4cef640d01.png)
 
 
